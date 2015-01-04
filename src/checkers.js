@@ -25,9 +25,6 @@ var attemptMove = function(row1, col1, row2, col2) {
         makeMove(row1, col1, row2, col2);
         return true;
       }
-    } else {
-      $(document).trigger('invalidMove', "That move is invalid");
-      return false;
     }
     //player selects to jump, moving two spaces diagonally at a time
     if ( (row2 == row1 + 2) && ((col2 == col1 - 2)||(col2 == col1 + 2)) ) {
@@ -42,10 +39,7 @@ var attemptMove = function(row1, col1, row2, col2) {
         makeMove(row1, col1, row2, col2);
         return true;
       }
-    } else {
-      $(document).trigger('invalidMove', "That move is invalid")
-      return false;
-    }
+    } 
   } else if ( board[row1][col1] == 'red' && currentPlayer == 'red') {
     if ( (row2 == row1 - 1) && ((col2 == col1 - 1)||(col2 == col1 + 1)) ){
       //if they want to land on an untaken space
@@ -89,9 +83,11 @@ var makeMove = function(row1, col1, row2, col2) {
 };
 
 var removePiece = function(row, col) {
+  var record = board[row][col]
+  var element = 
   board[row][col] = ' X ';
   $(document).trigger('boardChange', board);
-  $(document).trigger('pieceTaken', taunt);
+  $(document).trigger('pieceTaken', taunt, takenPieceCounter);
 };
 
 
