@@ -12,20 +12,10 @@ var resetBoard = function () {
     ['red', ' X ', 'red', ' X ', 'red', ' X ', 'red', ' X ']
   ];
 
-<<<<<<< HEAD
-  currentPlayer = 'wht';
 
-  $(document).trigger('boardChange');
-};
-
-var selectSquare = function(row, col) {
-  if (board[row][col] === ' X ') {
-    $(document).trigger('invalidMove', "You selected an empty spot.");
-  }
-=======
   currentPlayer = 'wht'
   $(document).trigger('boardChange', board);
->>>>>>> fbfd030c5260a5f810f87c48b5adc2903f39d139
+
 };
 
 var attemptMove = function(row1, col1, row2, col2) {
