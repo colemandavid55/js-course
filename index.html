@@ -1,21 +1,32 @@
 <html>
-  <head><title>jQuery MVP Todo List Application</title></head>
-  <body>
+<head>
+  <title>jQuery MVP Quizzy Application Turbo</title>
+</head>
+<body>
+ 
+  <!-- View -->
 
-    <!-- View -->
-    <h1>QUIZZY</h1>
-    <div class="quiz">
-      <form id="quiz">
+  <form id="quiz-form">
+    <div class="name-entry">
+      <label type="text">NAME HERE</label>
+      <input type="text" id="name">
     </div>
-    <h3>Leader Board</h3>
-    <div class="leaders">
-    </div>
-    <!--- Language Extensions -->
-    <script src="src/ext/globals.js" type="text/javascript"></script>
-    <!--- 3rd Part Libraries -->
-    <script src="https://code.jquery.com/jquery-2.1.1.js" type="text/javascript"></script>
-    <!--- Models -->
-    <script src="src/tasks.js" type="text/javascript"></script>
-    <script src="src/task-presenter.js" type="text/javascript"></script>
-  </body>
+    <div class="questions"></div>
+    <button type="submit">Submit Quiz</button>
+  </form>
+  <div class="score">
+  </div>
+  <h3>LEADERBOARD</h3>
+  <div class="leaders">
+  </div>
+ 
+ 
+  <!-- 3rd Party Libraries -->
+  <script src="https://code.jquery.com/jquery-2.1.1.js" type="text/javascript"></script>
+  
+  <!-- Models -->
+  <script src="src/quiz.js" type="text/javascript"></script>
+  <!-- Presenters -->
+  <script src="src/quiz-presenter.js" type="text/javascript"></script>
+</body>
 </html>
