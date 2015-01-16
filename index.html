@@ -15,6 +15,8 @@
   <div id="score"></div>
   <h3>Leader Board</h3>
   <div id="leaderBoard"></div>
+  <h3>Averages Table</h3>
+  <div id="averagesRegister"></div>
 
  
  
@@ -24,13 +26,13 @@
 <script src="src/quiz.js" type="text/javascript"></script>
 <script type="text/javascript">
   Quiz.vm.questions([
-    { id: 100, content: "Question Sample 1",   answers: [
+    { id: 100, content: "Question_100",   answers: [
       "Answer Sample 1",
       "Answer Sample 2",
       "Answer Sample 3"
       ]
     },
-    { id: 101, content: "Question Sample 2",   answers: [
+    { id: 101, content: "Question_101",   answers: [
       "Answer Sample 1",
       "Answer Sample 2",
       "Answer Sample 3"
@@ -77,6 +79,13 @@
   m.module(leaderDiv, {
     controller: Leader.controller,
     view: Leader.view
+  })
+
+  var averagesDiv = document.getElementById('averagesRegister')
+
+  m.module(averagesDiv, {
+    controller: Average.controller,
+    view: Average.view
   })
 
   </script>

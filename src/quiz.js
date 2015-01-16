@@ -5,6 +5,7 @@
   window.NameInput = {}
   window.Score = {}
   window.Leader = {}
+  window.Average = {}
 
   Quiz.vm = {
     questions: m.prop([]),
@@ -26,6 +27,21 @@
 
   Leader.vm = {
     list: m.prop([])
+  }
+
+  Average.vm = {
+    averages: m.prop([
+      {
+        "question": "Question_100",
+        "attempted": [],
+        "average": 0
+      },
+      {
+        "question": "Question_101",
+        "attempted": [],
+        "average": 0
+      }
+    ])
   }
 
   // Quiz.model = function () {
@@ -70,12 +86,23 @@
     ctrl.grader = function (answers, userAnswers) {
       var score = 0;
       for (var i = 0, x = Quiz.vm.questions().length; i < x; i++) {
-        var questionId = 100 + i,
+        var questionRight = 0,
+        questionId = 100 + i,
         answerKey = answers["Question_" + questionId]["answerId"],
         answerGiven = userAnswers["Question_" + questionId]["answerId"];
         if (answerKey === answerGiven) {
           score++
+          questionRight++
         }
+      var avg = Average.vm.averages()[i];
+      avg["attempted"].push(questionRight)
+      var answeredRight = avg["attempted"].filter(function (idx) {
+        if (idx === 1) {
+          return idx
+        }
+      }).length
+      avg["average"] = answeredRight/(avg["attempted"].length)
+      questionRight = 0;
 
       }
 
@@ -249,6 +276,27 @@
       )
     ]
 
+  }
+
+  Average.controller = function () {
+    var ctrl = {}
+
+    ctrl.listAverages = function () {
+      return Average.vm.averages().map(function (average) {
+        return m('div', average.question + ": " + average.average)
+      })
+    }
+
+    return ctrl
+  }
+
+  Average.view = function (ctrl) {
+    return [
+      m('.average', {
+        id: "average"
+      },
+      ctrl.listAverages()
+    )]
   }
 
    //  QuizPresenter.renderQuizzes = function () {
