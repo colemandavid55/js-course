@@ -5,28 +5,81 @@
 <body>
  
   <!-- View -->
+  <h2>QUIZZY</h2>
+  <div id="nameInput"></div>
+<!--   <label type="text" name="name">Name: </label>
+  <input type="text" id="name"></input><br><br> -->
 
-  <form id="quiz-form">
-    <div class="name-entry">
-      <label type="text">NAME HERE</label>
-      <input type="text" id="name">
-    </div>
-    <div class="questions"></div>
-    <button type="submit">Submit Quiz</button>
-  </form>
-  <div class="score">
-  </div>
-  <h3>LEADERBOARD</h3>
-  <div class="leaders">
-  </div>
+  <div id="quiz"></div>
+
+  <div id="score"></div>
+  <h3>Leader Board</h3>
+  <div id="leaderBoard"></div>
+
  
  
   <!-- 3rd Party Libraries -->
-  <script src="https://code.jquery.com/jquery-2.1.1.js" type="text/javascript"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mithril/0.1.28/mithril.js" type="text/javascript"></script>
+<script src="src/quiz.js" type="text/javascript"></script>
+<script type="text/javascript">
+  Quiz.vm.questions([
+    { id: 100, content: "Question Sample 1",   answers: [
+      "Answer Sample 1",
+      "Answer Sample 2",
+      "Answer Sample 3"
+      ]
+    },
+    { id: 101, content: "Question Sample 2",   answers: [
+      "Answer Sample 1",
+      "Answer Sample 2",
+      "Answer Sample 3"
+      ]
+    },
+  ])
+
+  Quiz.vm.answers({
+      "Question_100": 
+        {
+          questionId: 100,
+          answerId: 1
+        },
+      "Question_101": 
+        {
+          questionId: 101,
+          answerId: 2
+        }
+    })
+
+  var appDiv = document.getElementById('quiz')
   
-  <!-- Models -->
-  <script src="src/quiz.js" type="text/javascript"></script>
-  <!-- Presenters -->
-  <script src="src/quiz-presenter.js" type="text/javascript"></script>
+  m.module(appDiv, {
+    controller: Quiz.controller,
+    view: Quiz.view
+  })
+
+  var nameDiv = document.getElementById('nameInput')
+
+  m.module(nameDiv, {
+    controller: NameInput.controller,
+    view: NameInput.view
+  })
+
+  var scoreDiv = document.getElementById('score')
+
+  m.module(scoreDiv, {
+    controller: Score.controller,
+    view: Score.view
+  })
+
+  var leaderDiv = document.getElementById('leaderBoard')
+
+  m.module(leaderDiv, {
+    controller: Leader.controller,
+    view: Leader.view
+  })
+
+  </script>
+
 </body>
 </html>
