@@ -40,6 +40,17 @@
     },
   ])
 
+  List.vm = {
+    lists: m.prop([]),
+    sync: function () {
+    var vm = List.vm;
+    m.request({ method: "GET", url: "api.pipedrive.com/v1/deals?start=0&limit=1000&sort=id%20desc&api_token=e4831d7da0431bc7895035d114c03915d243de4b" }).then(function (response) {
+      console.log(response);
+
+    })
+  }
+  }
+
   Quiz.vm.answers({
       "Question_100": 
         {
@@ -60,26 +71,6 @@
     view: Quiz.view
   })
 
-  var nameDiv = document.getElementById('nameInput')
-
-  m.module(nameDiv, {
-    controller: NameInput.controller,
-    view: NameInput.view
-  })
-
-  var scoreDiv = document.getElementById('score')
-
-  m.module(scoreDiv, {
-    controller: Score.controller,
-    view: Score.view
-  })
-
-  var leaderDiv = document.getElementById('leaderBoard')
-
-  m.module(leaderDiv, {
-    controller: Leader.controller,
-    view: Leader.view
-  })
 
   var averagesDiv = document.getElementById('averagesRegister')
 
